@@ -1,0 +1,7 @@
+{
+  "name": "inferno-setup",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gary Yeung <gary.yeung>",
+  "license": "MIT"
+}
