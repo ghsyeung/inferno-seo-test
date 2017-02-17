@@ -3,13 +3,15 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.tsx", // Point to main file
+  entry: "./src/client/index.ts", // Point to main file
   output: {
     path: __dirname + "/dist",
+    publicPath: '/',
     filename: "bundle.js"
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    mainFields: ["browser", "main", "module"]
   },
   performance: {
     hints: false
@@ -48,7 +50,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin(
       {
-        template: "./src/index.html",
+        template: "./src/client/index.html",
         inject: "body"
       }
     ),

@@ -1,17 +1,14 @@
-import {render, version} from 'inferno';
+import {version} from 'inferno';
 import Component from 'inferno-component';
-import {Incrementer} from './components/Incrementer';
+import {Incrementer} from '../components/Incrementer';
 
-import "./main.css";
+import '../main.css';
 
-const container = document.getElementById('app');
-
-class MyComponent extends Component<any, any> {
+export class MyComponent extends Component<any, any> {
 	private tsxVersion: number;
 
 	constructor(props, context) {
 		super(props, context);
-
 		this.tsxVersion = 2.15; /* This is typed value */
 	}
 
@@ -24,5 +21,3 @@ class MyComponent extends Component<any, any> {
 		);
 	}
 }
-
-render(<MyComponent />, container);
