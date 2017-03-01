@@ -45,7 +45,7 @@ module.exports = {
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('src/client/index.html'),
-  appIndexJs: resolveApp('src/client/index.ts'),
+  appIndexJs: resolveApp('src/client/index.tsx'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   yarnLockFile: resolveApp('yarn.lock'),
@@ -59,37 +59,3 @@ module.exports = {
 function resolveOwn(relativePath) {
   return path.resolve(__dirname, relativePath);
 }
-
-// config before eject: we're in ./node_modules/inferno-scripts/config/
-module.exports = {
-  appBuild: resolveApp('build'),
-  appPublic: resolveApp('public'),
-  appHtml: resolveApp('src/client/index.html'),
-  appIndexJs: resolveApp('src/client/index.ts'),
-  appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('src'),
-  yarnLockFile: resolveApp('yarn.lock'),
-  testsSetup: resolveApp('src/setupTests.js'),
-  appNodeModules: resolveApp('node_modules'),
-  // this is empty with npm3 but node resolution searches higher anyway:
-  ownNodeModules: resolveOwn('../node_modules'),
-  nodePaths: nodePaths
-};
-
-// config before publish: we're in ./packages/inferno-scripts/config/
-if (__dirname.indexOf(path.join('packages', 'inferno-scripts', 'config')) !== -1) {
-  module.exports = {
-    appBuild: resolveOwn('../../../build'),
-    appPublic: resolveOwn('../template/public'),
-    appHtml: resolveOwn('../template/public/index.html'),
-    appIndexJs: resolveOwn('../template/src/index.ts'),
-    appPackageJson: resolveOwn('../package.json'),
-    appSrc: resolveOwn('../template/src'),
-    yarnLockFile: resolveOwn('../template/yarn.lock'),
-    testsSetup: resolveOwn('../template/src/setupTests.js'),
-    appNodeModules: resolveOwn('../node_modules'),
-    ownNodeModules: resolveOwn('../node_modules'),
-    nodePaths: nodePaths
-  };
-}
-// @remove-on-eject-end
