@@ -149,29 +149,31 @@ module.exports = {
           /\.json$/,
           /\.svg$/
         ],
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]'
-        }
+        use: {
+          loader: 'url-loader',
+          query: {
+            limit: 10000,
+            name: 'static/media/[name].[hash:8].[ext]'
+          }
+        },
       },
       // Process TS with ts-loader and babel .
       {
         test: /\.(ts|tsx)$/,
-        loaders: ['babel-loader', 'ts-loader'], // first babel-loader, then ts-loader
+        use: ['babel-loader', 'ts-loader'], // first babel-loader, then ts-loader
         include: paths.appSrc,
       },
       // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
-        loader: 'babel',
-        // @remove-on-eject-begin
-        query: {
-          babelrc: false,
-          presets: [require.resolve('babel-preset-inferno-app')],
+        use: {
+          loader: 'babel-loader',
+          query: {
+            babelrc: false,
+            presets: [require.resolve('babel-preset-inferno-app')],
+          },
         },
-        // @remove-on-eject-end
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
@@ -187,13 +189,13 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
+        use: ExtractTextPlugin.extract(
           // Note: This is for webpack 2 beta
           {
             fallback: 'style-loader',
             use: [
-              {loader: 'css-loader', options: { sourceMap: true }},
-              {loader: 'postcss-loader', options: {postcss: {plugins: [autoprefixer()], sourceMap: true}}},
+              {loader: 'css-loader', options: {sourceMap: true}},
+              { loader: 'postcss-loader', options: { sourceMap: true }},
             ]
           })
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
@@ -202,15 +204,17 @@ module.exports = {
       // allow it implicitly so we also enable it.
       {
         test: /\.json$/,
-        loader: 'json'
+        use: 'json-loader'
       },
       // "file" loader for svg
       {
         test: /\.svg$/,
-        loader: 'file',
-        query: {
-          name: 'static/media/[name].[hash:8].[ext]'
-        }
+        use: {
+          loader: 'file-loader',
+          query: {
+            name: 'static/media/[name].[hash:8].[ext]'
+          }
+        },
       }
     ]
   },

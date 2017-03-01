@@ -1,4 +1,5 @@
 #app {
+  background: url('../assets/images/P-logo.svg');
   margin: 0 auto;
 
   .visualizer {

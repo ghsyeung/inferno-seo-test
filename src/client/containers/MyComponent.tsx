@@ -2,7 +2,7 @@ import {version} from 'inferno';
 import Component from 'inferno-component';
 import {Incrementer} from '../components/Incrementer';
 
-import '../main.css';
+require('./css/main.css');
 
 export class MyComponent extends Component<any, any> {
 	private tsxVersion: number;

@@ -1,9 +1,5 @@
-import {Router, Route, Link} from 'inferno-router';
-import createBrowserHistory from 'history/createBrowserHistory';
+import {Route, Link} from 'inferno-router';
 import {MyComponent} from '../containers/MyComponent';
-
-const browserHistory = createBrowserHistory();
-
 
 function NavMenu() {
   return <div className="nav-menu">
@@ -22,7 +18,7 @@ function App({children}) {
   return (<div>
     <NavMenu />
     {children}
-    </div>)
+  </div>)
 }
 
 function NoMatch({children}) {
@@ -39,15 +35,13 @@ function User({params}) {
 }
 
 export const Routes = (
-  <Router history={ browserHistory }>
-    <Route component={ App }>
-      <Route path="/comp" component={ MyComponent }/>
-      <Route path="/users" component={ Users }>
-        <Route path="/user/:username" component={ User }/>
-      </Route>
-      <Route path="*" component={ NoMatch }/>
+  <Route component={ App }>
+    <Route path="/comp" component={ MyComponent }/>
+    <Route path="/users" component={ Users }>
+      <Route path="/user/:username" component={ User }/>
     </Route>
-  </Router>
+    <Route path="*" component={ NoMatch }/>
+  </Route>
 );
 
 
